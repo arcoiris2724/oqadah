@@ -3,101 +3,87 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>OQADAH — Photon Story HQ</title>
-  <meta name="description" content="OQADAH — Photon Story HQ. Weaving light and thought into stories for children and seekers alike." />
+  <title>About — OQADAH</title>
+  <meta name="description" content="OQADAH — Photon Story HQ. About the project weaving light and thought into stories." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    :root { --ink:#0a0f17; --gold:#f6c453; --teal:#69d1c5; --muted:#8892a6 }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{ margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background: radial-gradient(1200px 800px at 50% 20%, #0e1624 0%, var(--ink) 60%); color:#e8eefc; overflow-x:hidden }
-    a{color:var(--gold); text-decoration:none}
-    a:hover{opacity:.9}
-    .container{width:min(1100px, 92vw); margin-inline:auto}
-    header{position:fixed; inset:0 0 auto 0; height:72px; display:flex; align-items:center; z-index:20; background:linear-gradient(180deg, rgba(10,15,23,.9), rgba(10,15,23,.6) 60%, transparent); backdrop-filter:saturate(130%) blur(6px); border-bottom:1px solid rgba(255,255,255,.06)}
-    header .container{display:flex; align-items:center; justify-content:space-between}
-    .brand{display:flex; align-items:center; gap:.75rem; font-weight:800; letter-spacing:.12em}
-    .brand .glyph{width:28px; height:28px; border-radius:50%; background: radial-gradient(circle at 35% 35%, #ffefc5 0%, var(--gold) 40%, #bf7f2e 100%); box-shadow:0 0 20px rgba(246,196,83,.45)}
-    nav a{margin-left:1.25rem; font-weight:600; color:#d6e0ff}
-    nav a.btn{padding:.6rem 1rem; border:1px solid rgba(246,196,83,.35); border-radius:999px}
-    .hero{position:relative; min-height:72svh; display:grid; place-items:center; text-align:center}
-    canvas#stars{position:absolute; inset:0; width:100%; height:100%; z-index:0}
+    :root{--ink:#0a0f17;--gold:#f6c453;--muted:#8892a6}
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:radial-gradient(1200px 800px at 50% 20%,#0e1624 0%,var(--ink) 60%);color:#e8eefc;overflow-x:hidden}
+    a{color:var(--gold);text-decoration:none} a:hover{opacity:.92}
+    .container{width:min(1100px,92vw);margin-inline:auto}
+    header{position:fixed;inset:0 0 auto 0;height:72px;display:flex;align-items:center;z-index:20;background:linear-gradient(180deg,rgba(10,15,23,.9),rgba(10,15,23,.6) 60%,transparent);backdrop-filter:saturate(130%) blur(6px);border-bottom:1px solid rgba(255,255,255,.06)}
+    header .container{display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:.75rem;font-weight:800;letter-spacing:.12em}
+    .glyph{width:28px;height:28px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffefc5 0%,var(--gold) 40%,#bf7f2e 100%);box-shadow:0 0 20px rgba(246,196,83,.45)}
+    nav a{margin-left:1.1rem;font-weight:600;color:#d6e0ff}
+    nav a.btn{padding:.55rem .9rem;border:1px solid rgba(246,196,83,.35);border-radius:999px}
+    .hero{position:relative;min-height:52svh;display:grid;place-items:center;text-align:center}
+    canvas#stars{position:absolute;inset:0;width:100%;height:100%;z-index:0}
     .hero .container{z-index:1}
-    h1.title{font-size:clamp(40px, 7vw, 90px); line-height:1.05; margin:0}
-    .subtitle{max-width:60ch; margin:1rem auto 1.5rem; color:var(--muted); font-size:clamp(16px,2vw,20px)}
-    main section{padding:72px 0}
-    .grid{display:grid; gap:24px; margin-top:2rem}
-    @media (min-width:900px){ .grid{grid-template-columns:repeat(3,1fr)} }
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:24px; text-align:center}
-    .card h2{margin:.2rem 0 0; font-size:clamp(20px,2.6vw,28px)}
-    .card p{color:var(--muted); font-size:15px; margin:.6rem 0 1rem}
-    .card a{display:inline-block; margin-top:.6rem; font-weight:600}
-    footer{padding:72px 0 56px; color:#98a6c2; text-align:center}
-    .tiny{font-size:12px; opacity:.8}
+    h1{font-size:clamp(36px,6vw,80px);line-height:1.04;margin:0}
+    .subtitle{max-width:60ch;margin:1rem auto 1.5rem;color:var(--muted)}
+    main section{padding:64px 0}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:24px}
+    .grid{display:grid;gap:24px} @media(min-width:900px){.grid{grid-template-columns:1.2fr 1fr}}
+    h2{margin:.2rem 0 0;font-size:clamp(22px,3vw,30px)}
+    .muted{color:var(--muted)} footer{padding:72px 0 56px;color:#98a6c2;text-align:center}
+    .tiny{font-size:12px;opacity:.8}
   </style>
 </head>
 <body>
 <header>
   <div class="container">
-    <div class="brand">
-      <span class="glyph" aria-hidden></span>
-      <a href="/" style="color:#e8eefc">OQADAH</a>
-    </div>
+    <div class="brand"><span class="glyph" aria-hidden></span><a href="index.html" style="color:#e8eefc">OQADAH</a></div>
     <nav>
-      <a href="about.html">About</a>
+      <a href="about.html" aria-current="page">About</a>
       <a href="mission.html">Mission</a>
       <a href="photon-story.html">The Photon Story</a>
       <a class="btn" href="contact.html">Contact</a>
     </nav>
-    </div>
+  </div>
 </header>
 
-  <section class="hero">
-    <canvas id="stars" aria-hidden="true"></canvas>
-    <div class="container">
-      <h1 class="title">OQADAH</h1>
-      <p class="subtitle">Photon Story HQ — weaving light and thought into coherence for children, families, and seekers of wonder.</p>
+<section class="hero">
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="container">
+    <h1>About OQADAH</h1>
+    <p class="subtitle">Photon Story HQ — a small studio weaving light & thought into child-friendly, adult-deep parables, freely shared.</p>
+  </div>
+</section>
+
+<main>
+  <section>
+    <div class="container grid">
+      <article class="card">
+        <h2>What We Are</h2>
+        <p class="muted">A tiny, sovereign imprint making open, privacy-respecting stories and shorts. No trackers. No paywalls. Curiosity first.</p>
+        <ul>
+          <li>Short animated films released free to the public.</li>
+          <li>Guides for families, teachers, and seekers.</li>
+          <li>Lightweight sites and archival formats for longevity.</li>
+        </ul>
+      </article>
+      <aside class="card">
+        <h2>Contact</h2>
+        <p class="muted">Write us at <a href="mailto:studio@oqqadah.com">studio@oqqadah.com</a>.</p>
+      </aside>
     </div>
   </section>
+</main>
 
-  <main>
-    <section>
-      <div class="container grid">
-        <div class="card">
-          <h2>Mission</h2>
-          <p>Why we exist: seeding curiosity and coherence through story, science, and song.</p>
-          <a href="/mission.html">Read our mission →</a>
-        </div>
-        <div class="card">
-          <h2>The Photon Story</h2>
-          <p>The little Photon & the Big Thought — a parable of speed, stillness, and shining without racing.</p>
-          <a href="/the-photon-story.html">Explore the story →</a>
-        </div>
-        <div class="card">
-          <h2>Contact</h2>
-          <p>Collaboration, screenings, and school pilots. We reply from <em>studio@oqqadah.com</em>.</p>
-          <a href="/contact.html">Reach out →</a>
-        </div>
-      </div>
-    </section>
-  </main>
+<footer><div class="container"><div class="tiny">© <span id="y"></span> OQADAH • About</div></div></footer>
 
-  <footer>
-    <div class="container"><div class="tiny">© <span id="y"></span> OQADAH • Photon Story HQ</div></div>
-  </footer>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-    const canvas = document.getElementById('stars');
-    const ctx = canvas.getContext('2d');
-    const DPR = Math.max(1, window.devicePixelRatio || 1);
-    let w,h,stars;
-    function resize(){ w = canvas.width = Math.floor(innerWidth*DPR); h = canvas.height = Math.floor(innerHeight*0.72*DPR); canvas.style.width=innerWidth+'px'; canvas.style.height=Math.floor(innerHeight*0.72)+'px'; init(); }
-    function init(){ const count = Math.floor((w*h)/22000); stars = Array.from({length:count},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.3*DPR,a:Math.random(),v:0.001+Math.random()*0.003})); draw(); }
-    function draw(){ ctx.clearRect(0,0,w,h); for(const s of stars){ s.a+=s.v; const tw=(Math.sin(s.a)+1)/2; ctx.globalAlpha=0.5+tw*0.5; ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); } requestAnimationFrame(draw); }
-    addEventListener('resize', resize, {passive:true}); resize();
-  </script>
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+  const c=document.getElementById('stars'),x=c.getContext('2d'),D=Math.max(1,devicePixelRatio||1);
+  let w,h,S=[];
+  function init(){const n=Math.floor((w*h)/24000);S=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2*D,a:Math.random(),v:0.001+Math.random()*0.003}));draw();}
+  function draw(){x.clearRect(0,0,w,h);for(const s of S){s.a+=s.v;const t=(Math.sin(s.a)+1)/2;x.globalAlpha=0.5+t*0.5;x.fillStyle='#fff';x.beginPath();x.arc(s.x,s.y,s.r,0,Math.PI*2);x.fill()}requestAnimationFrame(draw)}
+  function resize(){w=c.width=Math.floor(innerWidth*D);h=c.height=Math.floor(innerHeight*0.52*D);c.style.width=innerWidth+'px';c.style.height=Math.floor(innerHeight*0.52)+'px';init()}
+  addEventListener('resize',resize,{passive:true});resize();
+</script>
 </body>
 </html>

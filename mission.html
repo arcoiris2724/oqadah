@@ -1,1 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mission — OQADAH</title>
+  <meta name="description" content="OQADAH Mission — Weaving thought & light into sovereign stories for children and the child within." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#0a0f17; --gold:#f6c453; --teal:#69d1c5; --muted:#8892a6 }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{ margin:0; font-family:Inter,system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; background: radial-gradient(1200px 800px at 50% 20%, #0e1624 0%, var(--ink) 60%); color:#e8eefc; overflow-x:hidden }
+    a{color:var(--gold); text-decoration:none}
+    a:hover{opacity:.9}
+    .container{width:min(1100px, 92vw); margin-inline:auto}
+    header{position:fixed; inset:0 0 auto 0; height:72px; display:flex; align-items:center; z-index:20; background:linear-gradient(180deg, rgba(10,15,23,.9), rgba(10,15,23,.6) 60%, transparent); backdrop-filter:saturate(130%) blur(6px); border-bottom:1px solid rgba(255,255,255,.06)}
+    header .container{display:flex; align-items:center; justify-content:space-between}
+    .brand{display:flex; align-items:center; gap:.75rem; font-weight:800; letter-spacing:.12em}
+    .brand .glyph{width:28px; height:28px; border-radius:50%; background: radial-gradient(circle at 35% 35%, #ffefc5 0%, var(--gold) 40%, #bf7f2e 100%); box-shadow:0 0 20px rgba(246,196,83,.45)}
+    nav a{margin-left:1.25rem; font-weight:600; color:#d6e0ff}
+    nav a.btn{padding:.6rem 1rem; border:1px solid rgba(246,196,83,.35); border-radius:999px}
+    .hero{position:relative; min-height:52svh; display:grid; place-items:center; text-align:center}
+    canvas#stars{position:absolute; inset:0; width:100%; height:100%; z-index:0}
+    .hero .container{z-index:1}
+    h1.title{font-size:clamp(36px, 6.2vw, 82px); line-height:1.03; margin:0}
+    .subtitle{max-width:60ch; margin:1rem auto 1.5rem; color:var(--muted)}
+    main section{padding:64px 0}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:24px}
+    .grid{display:grid; gap:24px}
+    @media (min-width:900px){ .grid{grid-template-columns:1.2fr 1fr; align-items:start} }
+    h2{margin:.2rem 0 0; font-size:clamp(24px, 3vw, 32px)}
+    .muted{color:var(--muted)}
+    footer{padding:72px 0 56px; color:#98a6c2}
+    .tiny{font-size:12px; opacity:.8}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="brand"><span class="glyph" aria-hidden></span><a href="/" style="color:#e8eefc">OQADAH</a></div>
+      <nav>
+        <a href="/mission.html" aria-current="page">Mission</a>
+        <a href="/photon-story.html">The Photon Story</a>
+        <a class="btn" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
+  <section class="hero">
+    <canvas id="stars" aria-hidden="true"></canvas>
+    <div class="container">
+      <h1 class="title">Our Mission</h1>
+      <p class="subtitle">We weave <em>thought</em> and <em>light</em> into sovereign stories for children—and the child within every seeker of wonder.</p>
+    </div>
+  </section>
+
+  <main>
+    <section>
+      <div class="container grid">
+        <article class="card">
+          <h2>Why We Exist</h2>
+          <p class="muted">To seed curiosity about what light and thought share in common—through freely accessible animated parables, ethical publishing, and privacy-first technology.</p>
+          <ul>
+            <li>Public, free short films that invite wonder (no trackers, no paywalls).</li>
+            <li>Study & discussion guides for families and classrooms.</li>
+            <li>Sovereign archives: your data and ours remain under user control.</li>
+          </ul>
+        </article>
+        <aside class="card">
+          <h2>Principles</h2>
+          <ul>
+            <li>Clarity over noise.</li>
+            <li>Kindness as design constraint.</li>
+            <li>Children-first language, adult-grade depth.</li>
+            <li>Open formats, sustainable files.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="card">
+          <h2>Contact</h2>
+          <p class="muted">Collaboration & questions: <a href="mailto:studio@oqqadah.com">studio@oqqadah.com</a> (routes to info@oqadah.com)</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container"><div class="tiny">© <span id="y"></span> OQADAH • Mission</div></div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    const DPR = Math.max(1, window.devicePixelRatio || 1);
+    let w,h,stars;
+    function resize(){ w = canvas.width = Math.floor(innerWidth*DPR); h = canvas.height = Math.floor(innerHeight*0.52*DPR); canvas.style.width=innerWidth+'px'; canvas.style.height=Math.floor(innerHeight*0.52)+'px'; init(); }
+    function init(){ const count = Math.floor((w*h)/24000); stars = Array.from({length:count},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2*DPR,a:Math.random(),v:0.001+Math.random()*0.003})); draw(); }
+    function draw(){ ctx.clearRect(0,0,w,h); for(const s of stars){ s.a+=s.v; const tw=(Math.sin(s.a)+1)/2; ctx.globalAlpha=0.5+tw*0.5; ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); } requestAnimationFrame(draw); }
+    addEventListener('resize', resize, {passive:true}); resize();
+  </script>
+</body>
+</html>

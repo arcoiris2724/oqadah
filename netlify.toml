@@ -5,6 +5,45 @@
   from = "/the-photon-story.html"
   to = "/photon-story.html"
   status = 301
+[[redirects]]
+  from = "/photonstory"
+  to   = "/photon-story.html"
+  status = 301
+
+[[redirects]]
+  from = "/story"
+  to   = "/photon-story.html"
+  status = 301
+
+[[redirects]]
+  from = "/mission"
+  to   = "/mission.html"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to   = "/about.html"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to   = "/contact.html"
+  status = 301
+[[redirects]]
+  from = "/*"
+  to   = "/404.html"
+  status = 404
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+# Cache static assets longer (adjust paths to match your repo)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
   for = "/*"

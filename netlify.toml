@@ -2,9 +2,9 @@
   publish = "."
 
 [[redirects]]
-  from = "/press"
-  to = "/press/index.html"
-  status = 200
+  from = "/the-photon-story.html"
+  to = "/photon-story.html"
+  status = 301
 
 [[headers]]
   for = "/*"

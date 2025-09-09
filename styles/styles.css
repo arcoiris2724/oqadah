@@ -53,28 +53,34 @@ h1 { font-size: clamp(36px, 6vw, 80px); line-height: 1.04; margin: .75rem 0 0; }
 #stars { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
 .hero .container { position: relative; z-index: 1; }
 
-/* === Solar Stage (hero) === */
-canvas#stars{position:absolute; inset:0; width:100%; height:100%; z-index:0}
-.stage{position:absolute; inset:0; display:grid; place-items:center; pointer-events:none}
-.solar{position:relative; width:min(75vmin, 760px); aspect-ratio:1/1}
-.sun{position:absolute; top:5%; left:10%; width:120px; aspect-ratio:1/1; border-radius:50%;
-  background: radial-gradient(circle at 35% 35%, #fff3d1 0%, #ffd88a 30%, var(--gold) 60%, #e19b26 100%);
-  box-shadow:0 0 80px 20px rgba(246,196,83,.3)}
-.planet{position:absolute; bottom:15%; right:15%; width: clamp(180px, 26vmin, 320px); aspect-ratio:1/1; border-radius:50%;
-  background: radial-gradient(circle at 30% 30%, #3a5f70 0%, #1f4960 60%, #102436 100%);
-  box-shadow: inset -20px -20px 40px rgba(0,0,0,.45), 0 0 60px rgba(54,163,196,.14)}
-.planet:after{content:""; position:absolute; inset:0; border-radius:inherit;
-  background: radial-gradient(120% 120% at 80% 80%, rgba(255,204,102,.55), rgba(255,204,102,0) 55%);
-  mix-blend-mode:screen}
-.orbit,.orbit--inner{position:absolute; inset:0; border-radius:50%; border:1px solid rgba(255,255,255,.08)}
-.orbit--inner{inset:8%}
-.moon{position:absolute; width:48px; aspect-ratio:1; border-radius:50%;
-  background: radial-gradient(circle at 35% 35%, #d1e0ff 0%, #6c8ba8 70%, #24374a 100%)}
-@keyframes orbit {to { transform: rotate(360deg); }}
-.moon-path{position:absolute; inset:15% 10% 25% 20%; border-radius:50%;
-  border:1px dashed rgba(255,255,255,.08); animation:orbit 28s linear infinite}
-.moon{top:-24px; left:50%; transform:translateX(-50%)}
-.mark{position:absolute; inset:auto 0 6%; text-align:center; font-weight:800; color:#e8d7a0; letter-spacing:.18em}
+/* Ensure clean stacking in hero */
+.hero { position: relative; isolation: isolate; }
+
+/* BACK: starfield */
+canvas#stars {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;            /* back */
+  pointer-events: none;
+}
+
+/* MIDDLE: solar stage */
+.stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 1;            /* middle */
+  pointer-events: none;
+}
+
+/* FRONT: hero text content */
+.hero .container {
+  position: relative;
+  z-index: 2;            /* front */
+}
 
 
 /* ===== Cards / Poster ===== */

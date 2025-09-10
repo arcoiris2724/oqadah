@@ -1,3 +1,10 @@
+/* OQADAH • styles.css • v0.9.10 • 2025-09-10
+   Change log:
+   - Single source of truth for layout & hero layering
+   - Starfield back (z:0), Solar stage middle (z:1), Text front (z:3)
+   - Clean nav, cards, poster, footer
+*/
+
 /* ===== Base / Reset ===== */
 * { box-sizing: border-box; }
 html, body { height: 100%; }
@@ -19,7 +26,7 @@ main section { padding: 64px 0; }
 
 /* ===== Header / Nav ===== */
 header {
-  position: fixed; inset: 0 0 auto 0; height: 72px;
+  position: fixed; top: 0; left: 0; right: 0; height: 72px;
   display: flex; align-items: center; z-index: 1000;
   background: linear-gradient(180deg, rgba(10,15,23,.9), rgba(10,15,23,.6) 60%, transparent);
   backdrop-filter: saturate(130%) blur(6px);
@@ -27,61 +34,56 @@ header {
 }
 header .container { display: flex; align-items: center; justify-content: space-between; }
 .brand { display: flex; align-items: center; gap: .75rem; font-weight: 800; letter-spacing: .12em; color: #fff; }
+.brand-link { color: #e8eefc; }
+.glyph {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffefc5 0%, #f6c453 40%, #bf7f2e 100%);
+  box-shadow: 0 0 20px rgba(246,196,83,.45);
+}
 nav a { margin-left: 1.1rem; font-weight: 600; color: #d6e0ff; }
-nav a.btn { padding: .55rem .9rem; border: 1px solid rgba(246,196,83,.35); border-radius: 999px; }
-
-/* ===== Hero ===== */
-.hero { position: relative; isolation: isolate; }
-
-canvas#stars{
-  position:absolute; inset:0; width:100%; height:100%;
-  z-index:0; pointer-events:none;
+.btn {
+  display: inline-block;
+  padding: .55rem .9rem;
+  border: 1px solid rgba(246,196,83,.35);
+  border-radius: 999px;
+  color: #f6c453;
+  background: transparent;
 }
 
-.stage{
-  position:absolute; inset:0; display:grid; place-items:center;
-  z-index:1; pointer-events:none;
-}
-
-.hero .container{ position:relative; z-index:2; }
+/* ===== Hero stacking contract ===== */
+.hero { position: relative; min-height: 62svh; display: grid; place-items: center; }
+.hero .container { position: relative; z-index: 3; text-align: center; padding-top: 88px; }
+#stars { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.stage { position: absolute; inset: 0; display: grid; place-items: center; z-index: 1; pointer-events: none; }
 
 h1 { font-size: clamp(36px, 6vw, 80px); line-height: 1.04; margin: .75rem 0 0; }
 .subtitle { max-width: 70ch; margin: 1rem auto 1.5rem; color: #8892a6; }
-.cta { display: inline-block; margin-top: .5rem; padding: .7rem 1.05rem; border: 1px solid rgba(246,196,83,.35); border-radius: 999px; }
+.cta { margin-top: .5rem; }
 
-/* starfield canvas (if present) */
-#stars { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
-.hero .container { position: relative; z-index: 1; }
-
-/* Ensure clean stacking in hero */
-.hero { position: relative; isolation: isolate; }
-
-/* BACK: starfield */
-canvas#stars {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;            /* back */
-  pointer-events: none;
+/* ===== Solar Stage (hero visuals) ===== */
+.solar { position: relative; width: min(75vmin, 760px); aspect-ratio: 1 / 1; }
+.sun {
+  position: absolute; top: 55%; left: 50%; width: 120px; aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff3d1 0%, #ffd88a 30%, #e6a81e 60%, #e19b26 100%);
+  box-shadow: 0 0 80px 20px rgba(246,196,83,.3);
 }
-
-/* MIDDLE: solar stage */
-.stage {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  z-index: 1;            /* middle */
-  pointer-events: none;
+.planet {
+  position: absolute; bottom: 15%; right: 15%;
+  width: clamp(180px, 26vmin, 320px); aspect-ratio: 1 / 1; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #3a5f70 0%, #1f4960 60%, #102436 100%);
+  box-shadow: inset -20px -20px 40px rgba(0,0,0,.45), 0 0 60px rgba(54,163,196,.14);
+  mix-blend-mode: screen; opacity: .85;
 }
-
-/* FRONT: hero text content */
-.hero .container {
-  position: relative;
-  z-index: 2;            /* front */
+.orbit { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(255,255,255,.08); }
+.moon-path { position: absolute; inset: 15% 10% 25% 20%; border-radius: 50%; border: 1px dashed rgba(255,255,255,.08); animation: orbit 28s linear infinite; }
+.moon { position: absolute; width: 48px; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #d1e0ff 0%, #6c8ba8 70%, #24374a 100%);
+  top: -24px; left: 50%; transform: translateX(-50%);
 }
-
+@keyframes orbit { to { transform: rotate(360deg); } }
+.mark { position: absolute; inset: auto 0 6%; text-align: center; font-weight: 800; color: #e8d7a0; letter-spacing: .18em; }
 
 /* ===== Cards / Poster ===== */
 .card {
@@ -90,6 +92,7 @@ canvas#stars {
   border-radius: 18px;
   padding: 24px;
 }
+.muted { color: #8892a6; }
 .poster {
   width: 100%;
   aspect-ratio: 16 / 9;

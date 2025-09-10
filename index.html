@@ -1,55 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- OQADAH • index.html • v0.9.10 • 2025-09-10 -->
+  <!-- Change log:
+       - Unified hero (starfield back, solar stage middle, text front)
+       - Shared stylesheet only (no inline CSS)
+       - Clean, relative links for Netlify + GitHub Pages
+  -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>OQADAH — Home</title>
   <meta name="description" content="OQADAH • Coherence, geometry, and light through story and science." />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Shared styles -->
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
+
 <header>
   <div class="container">
-    <div class="brand"><span class="glyph" aria-hidden></span><a href="index.html" style="color:#e8eefc">OQADAH</a></div>
+    <div class="brand">
+      <span class="glyph" aria-hidden="true"></span>
+      <a href="index.html" class="brand-link">OQADAH</a>
+    </div>
     <nav>
       <a href="about.html">About</a>
       <a href="mission.html">Mission</a>
       <a href="photon-story.html">The Photon Story</a>
-      <a href="story.html">Story</a>
       <a class="btn" href="contact.html">Contact</a>
     </nav>
   </div>
 </header>
 
-<!-- MERGED HERO: starfield + solar stage -->
-<section class="hero">
-  <canvas id="stars" aria-hidden="true"></canvas>   <!-- back -->
-  <div class="stage"></div>                         <!-- middle (solar) -->
-  <div class="container">                           <!-- front (text/buttons) -->
-    <!-- your title, subtitle, buttons -->
-  </div>
-</section>
+<!-- HERO: starfield (back) + solar stage (middle) + text (front) -->
+<section class="hero" aria-label="OQADAH hero">
+  <!-- back layer -->
+  <canvas id="stars" aria-hidden="true"></canvas>
 
-
-  <!-- Solar stage from your animated page -->
+  <!-- middle layer -->
   <div class="stage" aria-hidden="true">
     <div class="solar">
       <div class="sun"></div>
-      <div class="orbit"></div>
-      <div class="orbit orbit--inner"></div>
       <div class="planet"></div>
-      <div class="moon-path"><div class="moon"></div></div>
+      <div class="orbit"></div>
+      <!-- Optional moon path (uncomment to enable) -->
+      <!-- <div class="moon-path"><div class="moon"></div></div> -->
       <div class="mark">OQADAH</div>
     </div>
   </div>
 
-  <div class="container" style="z-index:1">
+  <!-- front layer -->
+  <div class="container">
     <h1>Coherence in Motion</h1>
-    <p class="subtitle">Geometry, music, and myth meeting in a living field — where light learns to guide, and thought remembers to be.</p>
-    <a class="cta" href="photon-story.html">Discover The Photon Story</a>
+    <p class="subtitle">
+      Geometry, music, and myth meeting in a living field —
+      where light learns to guide, and thought remembers to be.
+    </p>
+    <a class="btn cta" href="photon-story.html">Discover The Photon Story</a>
   </div>
 </section>
 
@@ -58,53 +70,76 @@
     <div class="container grid">
       <article class="card">
         <h2>What is OQADAH?</h2>
-        <p class="muted">A studio devoted to harmonics of number, time, and symbol — building public works that seed wonder: free stories, open glyphs, and shared tools.</p>
+        <p class="muted">
+          A studio devoted to harmonics of number, time, and symbol —
+          building public works that seed wonder: free stories, open glyphs, and shared tools.
+        </p>
         <ul>
           <li><a href="mission.html">Read the Mission</a></li>
           <li><a href="photon-story.html">Explore the Photon Story</a></li>
         </ul>
       </article>
+
       <aside class="card">
         <h2>Poster</h2>
-        <img src="assets/images/photon-poster.webp" alt="Photon Story Poster" class="poster" loading="lazy">
+        <img src="assets/images/photon-poster.webp"
+             alt="Photon Story Poster"
+             class="poster" loading="lazy">
       </aside>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="container"><div class="tiny">© <span id="y"></span> OQADAH</div></div>
+  <div class="container">
+    <div class="tiny">© <span id="y"></span> OQADAH</div>
+  </div>
 </footer>
 
+<!-- Minimal starfield (runs once, stays behind) -->
 <script>
-  // Year
-  document.getElementById('y').textContent = new Date().getFullYear();
+  (function stars() {
+    const c = document.getElementById('stars');
+    if (!c || !c.getContext) return;
+    const ctx = c.getContext('2d');
+    const DPR = Math.max(1, window.devicePixelRatio || 1);
 
-  // Starfield (from your current index)
-  const c=document.getElementById('stars'),x=c.getContext('2d'),D=Math.max(1,devicePixelRatio||1);
-  let w,h,S=[];
-  function init(){
-    const n=Math.floor((w*h)/22000);
-    S=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2*D,a:Math.random(),v:0.001+Math.random()*0.003}));
-    draw();
-  }
-  function draw(){
-    x.clearRect(0,0,w,h);
-    for(const s of S){
-      s.a+=s.v; const t=(Math.sin(s.a)+1)/2;
-      x.globalAlpha=0.5+t*0.5; x.fillStyle='#fff';
-      x.beginPath(); x.arc(s.x,s.y,s.r,0,Math.PI*2); x.fill();
+    function size() {
+      // match canvas to visual size
+      const w = c.clientWidth, h = c.clientHeight;
+      c.width  = Math.floor(w * DPR);
+      c.height = Math.floor(h * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     }
-    requestAnimationFrame(draw)
-  }
-  function resize(){
-    w=c.width=Math.floor(innerWidth*D);
-    h=c.height=Math.floor(innerHeight*0.9*D);
-    c.style.width=innerWidth+'px';
-    c.style.height=Math.floor(innerHeight*0.9)+'px';
-    init();
-  }
-  addEventListener('resize',resize,{passive:true}); resize();
+
+    const N = 140;
+    const stars = Array.from({ length: N }, () => ({
+      x: Math.random(), y: Math.random(), r: Math.random() * 1.2, a: Math.random()
+    }));
+
+    function draw() {
+      const w = c.clientWidth, h = c.clientHeight;
+      ctx.clearRect(0, 0, w, h);
+      for (const s of stars) {
+        s.a += 0.005 + Math.random() * 0.003;
+        const alpha = 0.4 + 0.6 * (0.5 + 0.5 * Math.sin(s.a));
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(s.x * w, s.y * h, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+
+    const ro = new ResizeObserver(() => size());
+    ro.observe(c);
+    size(); draw();
+  })();
+
+  // year
+  document.getElementById('y').textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>

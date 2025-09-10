@@ -39,29 +39,26 @@
 
 <!-- HERO: starfield (back) + solar stage (middle) + text (front) -->
 <section class="hero" aria-label="OQADAH hero">
-  <!-- back layer -->
-  <canvas id="stars" aria-hidden="true"></canvas>
+  <!-- back layer: starfield -->
+  <canvas id="stars"></canvas>
 
-  <!-- middle layer -->
+  <!-- middle layer: animated solar stage -->
   <div class="stage" aria-hidden="true">
-    <div class="solar">
-      <div class="sun"></div>
-      <div class="planet"></div>
-      <div class="orbit"></div>
-      <!-- Optional moon path (uncomment to enable) -->
-      <!-- <div class="moon-path"><div class="moon"></div></div> -->
-      <div class="mark">OQADAH</div>
+    <div class="sun"></div>
+    <div class="planet"></div>
+    <div class="orbit">
+      <div class="orbit__inner"></div>
     </div>
   </div>
 
-  <!-- front layer -->
+  <!-- front layer: your content -->
   <div class="container">
     <h1>Coherence in Motion</h1>
     <p class="subtitle">
-      Geometry, music, and myth meeting in a living field —
-      where light learns to guide, and thought remembers to be.
+      Geometry, music, and myth meeting in a living field — where light learns to guide, and
+      thought remembers to be.
     </p>
-    <a class="btn cta" href="photon-story.html">Discover The Photon Story</a>
+    <a class="btn" href="/photon-story.html">Discover The Photon Story</a>
   </div>
 </section>
 
@@ -139,6 +136,49 @@
 
   // year
   document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+<script>
+  (function () {
+    const c = document.getElementById('stars');
+    if (!c) return;
+    const ctx = c.getContext('2d', { alpha: true });
+    let w, h, stars;
+
+    function resize() {
+      const hero = document.querySelector('.hero');
+      if (!hero) return;
+      w = c.width = hero.clientWidth;
+      h = c.height = hero.clientHeight;
+      // make stars density scale with area
+      const count = Math.min(300, Math.floor((w * h) / 15000));
+      stars = Array.from({ length: count }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.1 + 0.2,
+        a: Math.random() * Math.PI * 2,
+        s: 0.005 + Math.random() * 0.01
+      }));
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      for (const s of stars) {
+        s.a += s.s;
+        const twinkle = 0.3 + 0.7 * (0.5 + 0.5 * Math.sin(s.a));
+        ctx.globalAlpha = twinkle;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = '#fff';
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    requestAnimationFrame(draw);
+  })();
 </script>
 
 </body>

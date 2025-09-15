@@ -1,1 +1,61 @@
-<h1>Press Kit Coming Soon</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Press Kit — OQADAH</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="brand">
+      <a class="brand-link" href="../index.html">OQADAH</a>
+    </div>
+    <nav>
+      <a href="../about.html">About</a>
+      <a href="../mission.html">Mission</a>
+      <a href="../photon-story.html">The Photon Story</a>
+      <a class="btn" href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Press Kit</h1>
+    <p class="subtitle">Logos, stills, and a one-pager for media & collaborators.</p>
+  </div>
+</section>
+
+<main>
+  <section>
+    <div class="container grid">
+      <article class="card">
+        <h2>Logos</h2>
+        <p><a href="oqadah-logo.png" download>oqadah-logo.png</a> (PNG)</p>
+        <p><a href="oqadah-logo.svg" download>oqadah-logo.svg</a> (SVG)</p>
+      </article>
+
+      <article class="card">
+        <h2>Stills</h2>
+        <p><a href="stills.zip" download>Download stills (ZIP)</a></p>
+      </article>
+
+      <article class="card">
+        <h2>One-Pager</h2>
+        <p><a href="oqadah-press-onepager.pdf" download>oqadah-press-onepager.pdf</a></p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="tiny">© <span id="y"></span> OQADAH</div>
+  </div>
+</footer>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</

@@ -1,0 +1,1 @@
+v=spf1 a:dispatch-us.ppe-hosted.com include:secureserver.net -all

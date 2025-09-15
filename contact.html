@@ -1,85 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<header>
-  <div class="container">
-    <div class="brand">
-      <span class="glyph" aria-hidden="true"></span>
-      <a href="index.html" style="color:#e8eefc">OQADAH</a>
-    </div>
-    <nav>
-      <a href="about.html">About</a>
-      <a href="mission.html">Mission</a>
-      <a href="photon-story.html">The Photon Story</a>
-      <a class="btn" href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
-
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OQADAH — Coherence in Motion</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
 <body>
 <header>
   <div class="container">
     <div class="brand">
-      <span class="glyph" aria-hidden></span>
-      <a href="/" style="color:#e8eefc">OQADAH</a>
+      <span class="glyph" aria-hidden="true"></span>
+      <a class="brand-link" href="index.html">OQADAH</a>
     </div>
     <nav>
       <a href="about.html">About</a>
       <a href="mission.html">Mission</a>
       <a href="photon-story.html">The Photon Story</a>
-      <a href="story.html">Story</a>
       <a class="btn" href="contact.html">Contact</a>
     </nav>
   </div>
 </header>
+<section class="hero">
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="container">
+    <h1 class="title">Contact HQ</h1>
+    <p class="subtitle">Collaboration, press, screenings, and school pilots. We reply from <em>studio@oqqadah.com</em> (routes to <em>info@oqadah.com</em>).</p>
+  </div>
+</section>
 
-  <section class="hero">
-    <canvas id="stars" aria-hidden="true"></canvas>
-    <div class="container">
-      <h1 class="title">Contact HQ</h1>
-      <p class="subtitle">Collaboration, press, screenings, and school pilots. We reply from <em>studio@oqqadah.com</em> (routes to <em>info@oqadah.com</em>).</p>
+<main>
+  <section>
+    <div class="container grid">
+      <article class="card">
+        <h2>Write to Us</h2>
+        <p class="muted">Email is the simplest path. If you prefer a form, this will post to Netlify Forms once enabled.</p>
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact">
+          <p style="display:none"><label>Don’t fill this out if you’re human: <input name="bot-field" /></label></p>
+          <label> Name <input type="text" name="name" required></label>
+          <label> Email <input type="email" name="email" required></label>
+          <label> Message <textarea name="message" required></textarea></label>
+          <button class="btn" type="submit">Send</button>
+        </form>
+        <p class="tiny" style="margin-top:10px">No trackers. Submissions are emailed to us and stored by Netlify only if you enable it.</p>
+      </article>
+      <aside class="card">
+        <h2>Direct Email</h2>
+        <p class="muted"><a href="mailto:studio@oqqadah.com">studio@oqqadah.com</a> ↔ <span title="routes to">info@oqadah.com</span></p>
+        <h2 style="margin-top:18px">Press Kit</h2>
+        <p class="muted">Logos, stills, and one‑pager: <a href="press/index.html">/press/</a></p>
+      </aside>
     </div>
   </section>
+</main>
 
-  <main>
-    <section>
-      <div class="container grid">
-        <article class="card">
-          <h2>Write to Us</h2>
-          <p class="muted">Email is the simplest path. If you prefer a form, this will post to Netlify Forms once enabled.</p>
-          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="contact">
-            <p style="display:none"><label>Don’t fill this out if you’re human: <input name="bot-field" /></label></p>
-            <label> Name <input type="text" name="name" required></label>
-            <label> Email <input type="email" name="email" required></label>
-            <label> Message <textarea name="message" required></textarea></label>
-            <button class="btn btn--gold" type="submit">Send</button>
-          </form>
-          <p class="tiny" style="margin-top:10px">No trackers. Submissions are emailed to us and stored by Netlify only if you enable it.</p>
-        </article>
-        <aside class="card">
-          <h2>Direct Email</h2>
-          <p class="muted"><a href="mailto:studio@oqqadah.com">studio@oqqadah.com</a> ↔ <span title="routes to">info@oqadah.com</span></p>
-          <h2 style="margin-top:18px">Press Kit</h2>
-          <p class="muted">Logos, stills, and one‑pager: <a href="/press/">/press/</a></p>
-        </aside>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container"><div class="tiny">© <span id="y"></span> OQADAH • Contact</div></div>
-  </footer>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-    const canvas = document.getElementById('stars');
-    const ctx = canvas.getContext('2d');
-    const DPR = Math.max(1, window.devicePixelRatio || 1);
-    let w,h,stars;
-    function resize(){ w = canvas.width = Math.floor(innerWidth*DPR); h = canvas.height = Math.floor(innerHeight*0.52*DPR); canvas.style.width=innerWidth+'px'; canvas.style.height=Math.floor(innerHeight*0.52)+'px'; init(); }
-    function init(){ const count = Math.floor((w*h)/24000); stars = Array.from({length:count},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2*DPR,a:Math.random(),v:0.001+Math.random()*0.003})); draw(); }
-    function draw(){ ctx.clearRect(0,0,w,h); for(const s of stars){ s.a+=s.v; const tw=(Math.sin(s.a)+1)/2; ctx.globalAlpha=0.5+tw*0.5; ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); } requestAnimationFrame(draw); }
-    addEventListener('resize', resize, {passive:true}); resize();
-  </script>
+<script>
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  const DPR = Math.max(1, window.devicePixelRatio || 1);
+  let w,h,stars;
+  function resize(){ w = canvas.width = Math.floor(innerWidth*DPR); h = canvas.height = Math.floor(innerHeight*0.52*DPR); canvas.style.width=innerWidth+'px'; canvas.style.height=Math.floor(innerHeight*0.52)+'px'; init(); }
+  function init(){ const count = Math.floor((w*h)/24000); stars = Array.from({length:count},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2*DPR,a:Math.random(),v:0.001+Math.random()*0.003})); draw(); }
+  function draw(){ ctx.clearRect(0,0,w,h); for(const s of stars){ s.a+=s.v; const tw=(Math.sin(s.a)+1)/2; ctx.globalAlpha=0.5+tw*0.5; ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); } requestAnimationFrame(draw); }
+  addEventListener('resize', resize, {passive:true}); resize();
+</script>
+<footer><div class="container"><div class="tiny">© <span id="y"></span> OQADAH</div></div></footer>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>

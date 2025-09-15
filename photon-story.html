@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OQADAH — Coherence in Motion</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 <header>
   <div class="container">
     <div class="brand">
       <span class="glyph" aria-hidden="true"></span>
-      <a href="index.html" style="color:#e8eefc">OQADAH</a>
+      <a class="brand-link" href="index.html">OQADAH</a>
     </div>
     <nav>
       <a href="about.html">About</a>
@@ -14,25 +23,9 @@
     </nav>
   </div>
 </header>
-
-<body>
-<header>
-  <div class="container">
-    <div class="brand"><span class="glyph" aria-hidden></span><a href="index.html" style="color:#e8eefc">OQADAH</a></div>
-    <nav>
-      <a href="about.html">About</a>
-      <a href="mission.html">Mission</a>
-      <a href="photon-story.html">The Photon Story</a>
-      <a href="story.html">Story</a>
-      <a class="btn" href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
-
 <section class="hero">
   <canvas id="stars" aria-hidden="true"></canvas>
   <div class="container">
-    <!-- Poster image lives in BODY, not HEAD -->
     <img src="assets/images/photon-poster.webp" alt="Photon Story Poster" class="poster" loading="eager">
     <h1>The Little Photon & the Big Thought</h1>
     <p class="subtitle">A parable about speed, stillness, and shining by guiding — not racing.</p>
@@ -62,10 +55,7 @@
   </section>
 </main>
 
-<footer><div class="container"><div class="tiny">© <span id="y"></span> OQADAH • The Photon Story</div></div></footer>
-
 <script>
-  document.getElementById('y').textContent = new Date().getFullYear();
   const c=document.getElementById('stars'),x=c.getContext('2d'),D=Math.max(1,devicePixelRatio||1);
   let w,h,S=[];
   function init(){const n=Math.floor((w*h)/24000);S=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2*D,a:Math.random(),v:0.001+Math.random()*0.003}));draw();}
@@ -73,5 +63,7 @@
   function resize(){w=c.width=Math.floor(innerWidth*D);h=c.height=Math.floor(innerHeight*0.52*D);c.style.width=innerWidth+'px';c.style.height=Math.floor(innerHeight*0.52)+'px';init()}
   addEventListener('resize',resize,{passive:true});resize();
 </script>
+<footer><div class="container"><div class="tiny">© <span id="y"></span> OQADAH</div></div></footer>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>

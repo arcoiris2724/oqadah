@@ -4,228 +4,66 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>OQADAH — Coherence in Motion</title>
-
-  <!-- Font -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-  <!-- Site styles (your shared stylesheet) -->
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- Page-local (hero + starfield) styles: safe to keep here -->
-  <style>
-    :root{
-      --ink:#0a0f17;--gold:#f6c453;--muted:#8892a6;--card:#121924;--edge:#1c2633;
-      --ring:#243041;--glow:rgba(255,196,83,.45)
-    }
-    html,body{background:#0b121b;color:#dbe3ef;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-    a{color:#ffd782;text-decoration:none}
-    a:hover{text-decoration:underline}
-
-    /* Header */
-    header{position:fixed;inset:0 0 auto 0;height:72px;display:flex;align-items:center;justify-content:center;z-index:40;
-      background:linear-gradient(180deg,rgba(10,15,23,.85),rgba(10,15,23,.35) 70%,transparent)}
-    header .inner{width:min(1120px,92vw);display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .brand{display:flex;align-items:center;gap:.55rem;font-weight:800;letter-spacing:.1em}
-    .brand .dot{width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff7c0 0,#ffd363 45%,#ffb02e 70%,#d27a00 100%);box-shadow:0 0 24px 6px rgba(255,198,83,.45)}
-    nav{display:flex;gap:1.2rem;align-items:center}
-    nav a{opacity:.9}
-    nav a:hover{opacity:1}
-    .cta{padding:.6rem 1rem;border:1px solid #3a4a61;border-radius:999px}
-
-    main{padding-top:92px}
-
-    /* ---------- HERO STACK ---------- */
-    .hero{position:relative;isolation:isolate;min-height:64svh;display:grid;place-items:center;text-align:center}
-    /* Backmost: stars canvas */
-    #stars{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-    /* Behind text: solar stage */
-    .stage{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:1}
-    .stage::before{
-      content:"";position:absolute;inset:8% 10% 0 10%;
-      background:radial-gradient(closest-side,rgba(66,86,114,.08),transparent 65%);
-      border:1px solid rgba(76,98,129,.25);border-radius:50%;
-      filter:blur(.5px)
-    }
-    /* Foremost: content */
-    .hero .content{position:relative;z-index:2}
-    h1{font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.05;margin:.25rem 0 .75rem}
-    .subtitle{max-width:72ch;margin-inline:auto;color:#98a6c2}
-
-    .btn{display:inline-block;margin-top:1.25rem;padding:.7rem 1.15rem;border-radius:999px;border:1px solid #3a4a61}
-    .btn:hover{border-color:#516784}
-
-    /* ---------- SOLAR OBJECTS ---------- */
-    .solar{position:relative;width:min(760px,76vw);aspect-ratio:1/1}
-    .sun{
-      position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);
-      width:150px;aspect-ratio:1;border-radius:50%;
-      background:radial-gradient(circle at 35% 35%,#fff4c0 0,#ffdf91 40%,#ffbd42 63%,#e4970a 85%,rgba(255,189,66,0) 100%);
-      box-shadow:
-        0 0 60px 8px rgba(255,196,83,.45),
-        0 0 180px 32px rgba(255,196,83,.18);
-      filter:saturate(105%)
-    }
-    .orbit{
-      position:absolute;inset:12% 10% 8% 10%;border-radius:50%;
-      border:1px solid rgba(76,98,129,.35)
-    }
-    .planet{
-      position:absolute;top:50%;left:50%;width:clamp(140px,22vmin,260px);aspect-ratio:1;border-radius:50%;
-      background:radial-gradient(circle at 30% 30%,#b7e0ff 0,#7ab8d2 60%,#406a86 100%);
-      box-shadow:0 0 40px 10px rgba(80,170,220,.08), inset 0 0 18px rgba(255,255,255,.08);
-      transform:translate(-50%,-50%) rotate(0deg) translateY(-38%);
-      animation:orbit 26s linear infinite;
-      mix-blend-mode:screen;opacity:.95
-    }
-    @keyframes orbit{
-      to{transform:translate(-50%,-50%) rotate(360deg) translateY(-38%)}
-    }
-
-    /* ---------- SECTION CARDS ---------- */
-    .wrap{width:min(1120px,92vw);margin-inline:auto}
-    .grid{display:grid;gap:24px;margin:40px auto 80px;grid-template-columns:1fr;align-items:start}
-    @media (min-width:980px){.grid{grid-template-columns:1fr 1fr}}
-    .card{background:linear-gradient(180deg,rgba(18,25,36,.85),rgba(18,25,36,.70));border:1px solid rgba(58,74,97,.55);
-      border-radius:18px;padding:22px 24px 24px}
-    .card h2{margin:.25rem 0 1rem}
-    .poster{display:block;border-radius:12px;border:1px solid #2b3a4f;overflow:hidden}
-    .poster img{display:block;max-width:100%;height:auto}
-    footer{color:#8aa1ba;text-align:center;padding:36px 0 64px}
-  </style>
 </head>
-
 <body>
-  <header>
-    <div class="inner">
-      <div class="brand"><span class="dot" aria-hidden="true"></span><span>OQADAH</span></div>
-      <nav aria-label="Primary">
-        <a href="about.html">About</a>
-        <a href="mission.html">Mission</a>
-        <a href="photon-story.html">The Photon Story</a>
-        <a class="cta" href="contact.html">Contact</a>
-      </nav>
+<header>
+  <div class="container">
+    <div class="brand">
+      <span class="glyph" aria-hidden="true"></span>
+      <a class="brand-link" href="index.html">OQADAH</a>
     </div>
-  </header>
-
-  <main>
-
-    <main class="hero" role="main">
-      <section class="card story" aria-labelledby="story-title">
-        <h2 id="story-title">Arc, the Weaver</h2>
-        <p>
-          Arc tended a loom that wove light into stories. One thread was the little Photon — curious, bright,
-          always moving toward the axis. Around Arc were mirrors that echoed back questions: what is rhythm,
-          and who is listening? The little Photon learned that speed without breath is noise; cadence is the place
-          where meaning grows.
-        </p>
-
-        <h3>How this field lives</h3>
-        <p>
-          This page seeds the story in image and text. The slides on the right can be stepped through, or downloaded
-          below as a poster so the tale can travel off the screen into hands and rooms.
-        </p>
-
-        <div class="meta">
-          <strong>Assets used:</strong> slides, poster, and logo from the Oqadah archive.
-        </div>
-
-        <a class="cta" href="assets/images/oqadah-poster.jpg" download="Oqadah-Photon-Poster.jpg">Download poster</a>
-      </section>
-
-      <aside class="card slideshow" aria-label="Photon slides">
-        <div id="slides" class="slides" style="height:420px;">
-          <!-- initial image loaded; JS will handle the rest -->
-          <img id="slide-img" src="assets/images/Photon-Slide-1.png" alt="Photon slide 1" />
-        </div>
-
-        <div class="controls" aria-hidden="false">
-          <button id="prev" class="btn" aria-label="Previous slide">◀</button>
-          <button id="next" class="btn" aria-label="Next slide">▶</button>
-        </div>
-
-        <div class="dots" id="dots" role="tablist" aria-label="Slide navigation"></div>
-
-        <div class="meta" style="text-align:center">
-          <div>Poster: <a href="assets/images/oqadah-poster.jpg" style="color:var(--accent)">oqadah-poster.jpg</a></div>
-          <div style="margin-top:6px"><small>Tip: use arrows or tap dots to navigate.</small></div>
-        </div>
-      </aside>
-    </main>
-
-    <footer>
-      <div>Oqadah — Coherence in Motion</div>
-      <div style="margin-top:6px">If you want this page trimmed, themed, or converted to static-only assets (cheaper hosting), tell me which and I’ll provide the exact files.</div>
-    </footer>
+    <nav>
+      <a href="about.html">About</a>
+      <a href="mission.html">Mission</a>
+      <a href="photon-story.html">The Photon Story</a>
+      <a class="btn" href="contact.html">Contact</a>
+    </nav>
   </div>
+</header>
+<section class="hero">
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="container">
+    <img src="assets/images/The-Little-Photon.webp" alt="Photon Story Poster" class="poster" loading="eager">
+    <h1>The Little Photon & the Big Thought</h1>
+    <p class="subtitle">A parable about speed, stillness, and shining by guiding — not racing.</p>
+  </div>
+</section>
 
-  <script>
-    // Lightweight slideshow that loads images found in your repo by convention.
-    (function(){
-      // list the slides you have — edit to match your filenames exactly
-      const slides = [
-        'assets/images/Photon-Slide-1.png',
-        'assets/images/Photon-Slide-2.png',
-        'assets/images/Photon-Slide-3.png',
-        'assets/images/Photon-Slide-4.png',
-        'assets/images/Photon-Slide-5.png',
-        'assets/images/Photon-Slide-6.png',
-        'assets/images/Photon-Slide-7.png',
-        'assets/images/Photon-Slide-8.png',
-        'assets/images/Photon-Slide-9.png',
-        'assets/images/Photon-Slide-10.png'
-      ].filter(Boolean);
+<main>
+  <section>
+    <div class="container grid">
+      <article class="card">
+        <h2>About the Story</h2>
+        <p class="muted">Luzsa wants to be first. Thought is already there. On this journey, Luzsa discovers that shining isn’t winning — it’s guiding.</p>
+        <ul>
+          <li>Format: picture-book → animated short (8–10 min)</li>
+          <li>Themes: wonder, patience, curiosity, stillness</li>
+          <li>Audience: children 5+ and the child in all of us</li>
+        </ul>
+      </article>
+      <aside class="card">
+        <h2>Download/Watch</h2>
+        <ul>
+          <li>Poster: <a href="assets/images/The-Little-Photon.webp" download>The-Little-Photon.webp</a></li>
+          <li>Teaser (coming soon)</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+</main>
 
-      let i = 0;
-      const img = document.getElementById('slide-img');
-      const prev = document.getElementById('prev');
-      const next = document.getElementById('next');
-      const dotsEl = document.getElementById('dots');
-
-      function renderDots(){
-        dotsEl.innerHTML = '';
-        slides.forEach((s, idx) => {
-          const d = document.createElement('button');
-          d.className = 'dot' + (idx===i ? ' active' : '');
-          d.setAttribute('aria-label', 'Slide ' + (idx+1));
-          d.addEventListener('click', ()=>{ go(idx); });
-          dotsEl.appendChild(d);
-        });
-      }
-
-      function go(idx){
-        if(idx < 0) idx = slides.length - 1;
-        if(idx >= slides.length) idx = 0;
-        i = idx;
-        img.src = slides[i];
-        img.alt = 'Photon slide ' + (i+1);
-        // update dots
-        Array.from(dotsEl.children).forEach((d, n) => d.classList.toggle('active', n===i));
-      }
-
-      prev.addEventListener('click', ()=> go(i-1));
-      next.addEventListener('click', ()=> go(i+1));
-
-      // keyboard navigation
-      document.addEventListener('keydown', (ev)=>{
-        if(ev.key === 'ArrowLeft') go(i-1);
-        if(ev.key === 'ArrowRight') go(i+1);
-      });
-
-      // lazy prefetch next image (small)
-      img.addEventListener('load', ()=> {
-        const nextIndex = (i+1)%slides.length;
-        const p = new Image(); p.src = slides[nextIndex];
-      });
-
-      // init
-      if(slides.length === 0){
-        img.src = 'assets/images/The-Little-Photon.webp'; // fallback if no slides
-      } else {
-        renderDots();
-        go(0);
-      }
-    })();
-  </script>
+<script>
+  const c=document.getElementById('stars'),x=c.getContext('2d'),D=Math.max(1,devicePixelRatio||1);
+  let w,h,S=[];
+  function init(){const n=Math.floor((w*h)/24000);S=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2*D,a:Math.random(),v:0.001+Math.random()*0.003}));draw();}
+  function draw(){x.clearRect(0,0,w,h);for(const s of S){s.a+=s.v;const t=(Math.sin(s.a)+1)/2;x.globalAlpha=0.5+t*0.5;x.fillStyle='#fff';x.beginPath();x.arc(s.x,s.y,s.r,0,Math.PI*2);x.fill()}requestAnimationFrame(draw)}
+  function resize(){w=c.width=Math.floor(innerWidth*D);h=c.height=Math.floor(innerHeight*0.52*D);c.style.width=innerWidth+'px';c.style.height=Math.floor(innerHeight*0.52)+'px';init()}
+  addEventListener('resize',resize,{passive:true});resize();
+</script>
+<footer><div class="container"><div class="tiny">© <span id="y"></span> OQADAH</div></div></footer>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>

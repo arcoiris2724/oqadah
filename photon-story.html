@@ -1,69 +1,163 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>OQADAH — Coherence in Motion</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Little Photon — Oqadah</title>
+  <meta name="description" content="The Little Photon & the Big Thought — a short parable from Oqadah: images, story, and downloadable poster."/>
+  <style>
+    /* Minimal, self-contained styling so you can drop this in */
+    :root{--bg:#0f1115;--card:#0f1720;--muted:#9aa4ad;--accent:#ffd9a6}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#eef;background:var(--bg)}
+    .container{max-width:980px;margin:32px auto;padding:24px}
+    header{display:flex;gap:12px;align-items:center}
+    header img.logo{height:56px}
+    h1{margin:6px 0 2px;font-weight:600;font-size:1.6rem}
+    p.lead{margin:0;color:var(--muted)}
+    .hero{display:grid;grid-template-columns:1fr 340px;gap:20px;margin:22px 0;align-items:start}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);padding:18px;border-radius:12px}
+    .story{line-height:1.6;color:#e6eef6}
+    .slideshow{position:relative}
+    .slides{display:flex;overflow:hidden;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+    .slides img{width:100%;height:100%;object-fit:contain;display:block}
+    .controls{display:flex;gap:8px;justify-content:center;margin-top:10px}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent);padding:8px 12px;border-radius:8px;cursor:pointer}
+    .meta{font-size:.9rem;color:var(--muted);margin-top:10px}
+    footer{margin-top:28px;color:var(--muted);font-size:.9rem;text-align:center}
+    @media(max-width:880px){ .hero{grid-template-columns:1fr; } header img.logo{height:48px} .container{padding:16px} }
+    /* small slide nav dots */
+    .dots{display:flex;gap:6px;justify-content:center;margin-top:8px}
+    .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.06);cursor:pointer;outline:none;border:1px solid rgba(255,255,255,0.02)}
+    .dot.active{background:var(--accent);box-shadow:0 0 6px rgba(255,201,110,0.18)}
+    a.cta{display:inline-block;margin-top:12px;padding:8px 14px;background:var(--accent);color:#111;border-radius:8px;text-decoration:none}
+  </style>
 </head>
 <body>
-<header>
   <div class="container">
-    <div class="brand">
-      <span class="glyph" aria-hidden="true"></span>
-      <a class="brand-link" href="index.html">OQADAH</a>
-    </div>
-    <nav>
-      <a href="about.html">About</a>
-      <a href="mission.html">Mission</a>
-      <a href="photon-story.html">The Photon Story</a>
-      <a class="btn" href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
-<section class="hero">
-  <canvas id="stars" aria-hidden="true"></canvas>
-  <div class="container">
-    <img src="assets/images/The-Little-Photon.webp" alt="Photon Story Poster" class="poster" loading="eager">
-    <h1>The Little Photon & the Big Thought</h1>
-    <p class="subtitle">A parable about speed, stillness, and shining by guiding — not racing.</p>
-  </div>
-</section>
+    <header>
+      <img src="assets/images/oqadah-logo.png" alt="Oqadah logo" class="logo" />
+      <div>
+        <h1>The Little Photon & the Big Thought</h1>
+        <p class="lead">A short parable — Arc the Weaver, mirrors, and a lesson in cadence.</p>
+      </div>
+    </header>
 
-<main>
-  <section>
-    <div class="container grid">
-      <article class="card">
-        <h2>About the Story</h2>
-        <p class="muted">Luzsa wants to be first. Thought is already there. On this journey, Luzsa discovers that shining isn’t winning — it’s guiding.</p>
-        <ul>
-          <li>Format: picture-book → animated short (8–10 min)</li>
-          <li>Themes: wonder, patience, curiosity, stillness</li>
-          <li>Audience: children 5+ and the child in all of us</li>
-        </ul>
-      </article>
-      <aside class="card">
-        <h2>Download/Watch</h2>
-        <ul>
-          <li>Poster: <a href="assets/images/The-Little-Photon.webp" download>The-Little-Photon.webp</a></li>
-          <li>Teaser (coming soon)</li>
-        </ul>
+    <main class="hero" role="main">
+      <section class="card story" aria-labelledby="story-title">
+        <h2 id="story-title">Arc, the Weaver</h2>
+        <p>
+          Arc tended a loom that wove light into stories. One thread was the little Photon — curious, bright,
+          always moving toward the axis. Around Arc were mirrors that echoed back questions: what is rhythm,
+          and who is listening? The little Photon learned that speed without breath is noise; cadence is the place
+          where meaning grows.
+        </p>
+
+        <h3>How this field lives</h3>
+        <p>
+          This page seeds the story in image and text. The slides on the right can be stepped through, or downloaded
+          below as a poster so the tale can travel off the screen into hands and rooms.
+        </p>
+
+        <div class="meta">
+          <strong>Assets used:</strong> slides, poster, and logo from the Oqadah archive.
+        </div>
+
+        <a class="cta" href="assets/images/oqadah-poster.jpg" download="Oqadah-Photon-Poster.jpg">Download poster</a>
+      </section>
+
+      <aside class="card slideshow" aria-label="Photon slides">
+        <div id="slides" class="slides" style="height:420px;">
+          <!-- initial image loaded; JS will handle the rest -->
+          <img id="slide-img" src="images/Photon-Slide-1.png" alt="Photon slide 1" />
+        </div>
+
+        <div class="controls" aria-hidden="false">
+          <button id="prev" class="btn" aria-label="Previous slide">◀</button>
+          <button id="next" class="btn" aria-label="Next slide">▶</button>
+        </div>
+
+        <div class="dots" id="dots" role="tablist" aria-label="Slide navigation"></div>
+
+        <div class="meta" style="text-align:center">
+          <div>Poster: <a href="images/oqadah-poster.jpg" style="color:var(--accent)">oqadah-poster.jpg</a></div>
+          <div style="margin-top:6px"><small>Tip: use arrows or tap dots to navigate.</small></div>
+        </div>
       </aside>
-    </div>
-  </section>
-</main>
+    </main>
 
-<script>
-  const c=document.getElementById('stars'),x=c.getContext('2d'),D=Math.max(1,devicePixelRatio||1);
-  let w,h,S=[];
-  function init(){const n=Math.floor((w*h)/24000);S=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2*D,a:Math.random(),v:0.001+Math.random()*0.003}));draw();}
-  function draw(){x.clearRect(0,0,w,h);for(const s of S){s.a+=s.v;const t=(Math.sin(s.a)+1)/2;x.globalAlpha=0.5+t*0.5;x.fillStyle='#fff';x.beginPath();x.arc(s.x,s.y,s.r,0,Math.PI*2);x.fill()}requestAnimationFrame(draw)}
-  function resize(){w=c.width=Math.floor(innerWidth*D);h=c.height=Math.floor(innerHeight*0.52*D);c.style.width=innerWidth+'px';c.style.height=Math.floor(innerHeight*0.52)+'px';init()}
-  addEventListener('resize',resize,{passive:true});resize();
-</script>
-<footer><div class="container"><div class="tiny">© <span id="y"></span> OQADAH</div></div></footer>
-<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+    <footer>
+      <div>Oqadah — Coherence in Motion</div>
+      <div style="margin-top:6px">If you want this page trimmed, themed, or converted to static-only assets (cheaper hosting), tell me which and I’ll provide the exact files.</div>
+    </footer>
+  </div>
+
+  <script>
+    // Lightweight slideshow that loads images found in your repo by convention.
+    (function(){
+      // list the slides you have — edit to match your filenames exactly
+      const slides = [
+        'assets/images/Photon-Slide-1.png',
+        'assets/images/Photon-Slide-2.png',
+        'assets/images/Photon-Slide-3.png',
+        'assets/images/Photon-Slide-4.png',
+        'assets/images/Photon-Slide-5.png',
+        'assets/images/Photon-Slide-6.png',
+        'assets/images/Photon-Slide-7.png',
+        'assets/images/Photon-Slide-8.png',
+        'assets/images/Photon-Slide-9.png',
+        'assets/images/Photon-Slide-10.png'
+      ].filter(Boolean);
+
+      let i = 0;
+      const img = document.getElementById('slide-img');
+      const prev = document.getElementById('prev');
+      const next = document.getElementById('next');
+      const dotsEl = document.getElementById('dots');
+
+      function renderDots(){
+        dotsEl.innerHTML = '';
+        slides.forEach((s, idx) => {
+          const d = document.createElement('button');
+          d.className = 'dot' + (idx===i ? ' active' : '');
+          d.setAttribute('aria-label', 'Slide ' + (idx+1));
+          d.addEventListener('click', ()=>{ go(idx); });
+          dotsEl.appendChild(d);
+        });
+      }
+
+      function go(idx){
+        if(idx < 0) idx = slides.length - 1;
+        if(idx >= slides.length) idx = 0;
+        i = idx;
+        img.src = slides[i];
+        img.alt = 'Photon slide ' + (i+1);
+        // update dots
+        Array.from(dotsEl.children).forEach((d, n) => d.classList.toggle('active', n===i));
+      }
+
+      prev.addEventListener('click', ()=> go(i-1));
+      next.addEventListener('click', ()=> go(i+1));
+
+      // keyboard navigation
+      document.addEventListener('keydown', (ev)=>{
+        if(ev.key === 'ArrowLeft') go(i-1);
+        if(ev.key === 'ArrowRight') go(i+1);
+      });
+
+      // lazy prefetch next image (small)
+      img.addEventListener('load', ()=> {
+        const nextIndex = (i+1)%slides.length;
+        const p = new Image(); p.src = slides[nextIndex];
+      });
+
+      // init
+      if(slides.length === 0){
+        img.src = 'assets/images/The-Little-Photon.webp'; // fallback if no slides
+      } else {
+        renderDots();
+        go(0);
+      }
+    })();
+  </script>
 </body>
 </html>

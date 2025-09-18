@@ -35,7 +35,7 @@
 <body>
   <div class="container">
     <header>
-      <img src="images/oqadah-logo.png" alt="Oqadah logo" class="logo" />
+      <img src="assets/images/oqadah-logo.png" alt="Oqadah logo" class="logo" />
       <div>
         <h1>The Little Photon & the Big Thought</h1>
         <p class="lead">A short parable — Arc the Weaver, mirrors, and a lesson in cadence.</p>
@@ -62,13 +62,13 @@
           <strong>Assets used:</strong> slides, poster, and logo from the Oqadah archive.
         </div>
 
-        <a class="cta" href="images/oqadah-poster.jpg" download="Oqadah-Photon-Poster.jpg">Download poster</a>
+        <a class="cta" href="assets/images/oqadah-poster.jpg" download="Oqadah-Photon-Poster.jpg">Download poster</a>
       </section>
 
       <aside class="card slideshow" aria-label="Photon slides">
         <div id="slides" class="slides" style="height:420px;">
           <!-- initial image loaded; JS will handle the rest -->
-          <img id="slide-img" src="images/Photon-Slide-1.png" alt="Photon slide 1" />
+          <img id="slide-img" src="assets/images/Photon-Slide-1.png" alt="Photon slide 1" />
         </div>
 
         <div class="controls" aria-hidden="false">
@@ -79,7 +79,7 @@
         <div class="dots" id="dots" role="tablist" aria-label="Slide navigation"></div>
 
         <div class="meta" style="text-align:center">
-          <div>Poster: <a href="images/oqadah-poster.jpg" style="color:var(--accent)">oqadah-poster.jpg</a></div>
+          <div>Poster: <a href="assets/images/oqadah-poster.jpg" style="color:var(--accent)">oqadah-poster.jpg</a></div>
           <div style="margin-top:6px"><small>Tip: use arrows or tap dots to navigate.</small></div>
         </div>
       </aside>
@@ -96,16 +96,16 @@
     (function(){
       // list the slides you have — edit to match your filenames exactly
       const slides = [
-        'images/Photon-Slide-1.png',
-        'images/Photon-Slide-2.png',
-        'images/Photon-Slide-3.png',
-        'images/Photon-Slide-4.png',
-        'images/Photon-Slide-5.png',
-        'images/Photon-Slide-6.png',
-        'images/Photon-Slide-7.png',
-        'images/Photon-Slide-8.png',
-        'images/Photon-Slide-9.png',
-        'images/Photon-Slide-10.png'
+        'assets/images/Photon-Slide-1.png',
+        'assets/images/Photon-Slide-2.png',
+        'assets/images/Photon-Slide-3.png',
+        'assets/images/Photon-Slide-4.png',
+        'assets/images/Photon-Slide-5.png',
+        'assets/images/Photon-Slide-6.png',
+        'assets/images/Photon-Slide-7.png',
+        'assets/images/Photon-Slide-8.png',
+        'assets/images/Photon-Slide-9.png',
+        'assets/images/Photon-Slide-10.png'
       ].filter(Boolean);
 
       let i = 0;
@@ -152,7 +152,7 @@
 
       // init
       if(slides.length === 0){
-        img.src = 'images/The-Little-Photon.webp'; // fallback if no slides
+        img.src = 'assets/images/The-Little-Photon.webp'; // fallback if no slides
       } else {
         renderDots();
         go(0);

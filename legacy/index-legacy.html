@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OQADAH — Coherence in Motion</title>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Site styles (your shared stylesheet) -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Page-local (hero + starfield) styles: safe to keep here -->
+  <style>
+    :root{
+      --ink:#0a0f17;--gold:#f6c453;--muted:#8892a6;--card:#121924;--edge:#1c2633;
+      --ring:#243041;--glow:rgba(255,196,83,.45)
+    }
+    html,body{background:#0b121b;color:#dbe3ef;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:#ffd782;text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Header */
+    header{position:fixed;inset:0 0 auto 0;height:72px;display:flex;align-items:center;justify-content:center;z-index:40;
+      background:linear-gradient(180deg,rgba(10,15,23,.85),rgba(10,15,23,.35) 70%,transparent)}
+    header .inner{width:min(1120px,92vw);display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:.55rem;font-weight:800;letter-spacing:.1em}
+    .brand .dot{width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff7c0 0,#ffd363 45%,#ffb02e 70%,#d27a00 100%);box-shadow:0 0 24px 6px rgba(255,198,83,.45)}
+    nav{display:flex;gap:1.2rem;align-items:center}
+    nav a{opacity:.9}
+    nav a:hover{opacity:1}
+    .cta{padding:.6rem 1rem;border:1px solid #3a4a61;border-radius:999px}
+
+    main{padding-top:92px}
+
+    /* ---------- HERO STACK ---------- */
+    .hero{position:relative;isolation:isolate;min-height:64svh;display:grid;place-items:center;text-align:center}
+    /* Backmost: stars canvas */
+    #stars{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+    /* Behind text: solar stage */
+    .stage{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:1}
+    .stage::before{
+      content:"";position:absolute;inset:8% 10% 0 10%;
+      background:radial-gradient(closest-side,rgba(66,86,114,.08),transparent 65%);
+      border:1px solid rgba(76,98,129,.25);border-radius:50%;
+      filter:blur(.5px)
+    }
+    /* Foremost: content */
+    .hero .content{position:relative;z-index:2}
+    h1{font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.05;margin:.25rem 0 .75rem}
+    .subtitle{max-width:72ch;margin-inline:auto;color:#98a6c2}
+
+    .btn{display:inline-block;margin-top:1.25rem;padding:.7rem 1.15rem;border-radius:999px;border:1px solid #3a4a61}
+    .btn:hover{border-color:#516784}
+
+    /* ---------- SOLAR OBJECTS ---------- */
+    .solar{position:relative;width:min(760px,76vw);aspect-ratio:1/1}
+    .sun{
+      position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);
+      width:150px;aspect-ratio:1;border-radius:50%;
+      background:radial-gradient(circle at 35% 35%,#fff4c0 0,#ffdf91 40%,#ffbd42 63%,#e4970a 85%,rgba(255,189,66,0) 100%);
+      box-shadow:
+        0 0 60px 8px rgba(255,196,83,.45),
+        0 0 180px 32px rgba(255,196,83,.18);
+      filter:saturate(105%)
+    }
+    .orbit{
+      position:absolute;inset:12% 10% 8% 10%;border-radius:50%;
+      border:1px solid rgba(76,98,129,.35)
+    }
+    .planet{
+      position:absolute;top:50%;left:50%;width:clamp(140px,22vmin,260px);aspect-ratio:1;border-radius:50%;
+      background:radial-gradient(circle at 30% 30%,#b7e0ff 0,#7ab8d2 60%,#406a86 100%);
+      box-shadow:0 0 40px 10px rgba(80,170,220,.08), inset 0 0 18px rgba(255,255,255,.08);
+      transform:translate(-50%,-50%) rotate(0deg) translateY(-38%);
+      animation:orbit 26s linear infinite;
+      mix-blend-mode:screen;opacity:.95
+    }
+    @keyframes orbit{
+      to{transform:translate(-50%,-50%) rotate(360deg) translateY(-38%)}
+    }
+
+    /* ---------- SECTION CARDS ---------- */
+    .wrap{width:min(1120px,92vw);margin-inline:auto}
+    .grid{display:grid;gap:24px;margin:40px auto 80px;grid-template-columns:1fr;align-items:start}
+    @media (min-width:980px){.grid{grid-template-columns:1fr 1fr}}
+    .card{background:linear-gradient(180deg,rgba(18,25,36,.85),rgba(18,25,36,.70));border:1px solid rgba(58,74,97,.55);
+      border-radius:18px;padding:22px 24px 24px}
+    .card h2{margin:.25rem 0 1rem}
+    .poster{display:block;border-radius:12px;border:1px solid #2b3a4f;overflow:hidden}
+    .poster img{display:block;max-width:100%;height:auto}
+    footer{color:#8aa1ba;text-align:center;padding:36px 0 64px}
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="inner">
+      <div class="brand"><span class="dot" aria-hidden="true"></span><span>OQADAH</span></div>
+      <nav aria-label="Primary">
+        <a href="about.html">About</a>
+        <a href="mission.html">Mission</a>
+        <a href="resources.html">Resources</a>
+        <a href="photon-story.html">The Photon Story</a>
+        <a class="cta" href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-label="OQADAH hero">
+      <canvas id="stars" aria-hidden="true"></canvas>
+
+      <div class="stage" aria-hidden="true">
+        <div class="solar">
+          <div class="sun"></div>
+          <div class="orbit"></div>
+          <div class="planet"></div>
+        </div>
+      </div>
+
+      <div class="content wrap">
+        <h1>Coherence in Motion</h1>
+        <p class="subtitle">
+          Geometry, music, and myth meeting in a living field — where light learns to guide,
+          and thought remembers to be.
+        </p>
+        <a class="btn" href="photon-story.html">Discover The Photon Story</a>
+      </div>
+    </section>
+
+    <!-- BODY -->
+    <section class="wrap">
+      <div class="grid">
+        <article class="card">
+          <h2>What is OQADAH?</h2>
+          <p>
+            A studio devoted to harmonics of number, time, and symbol —
+            building public works that seed wonder: free stories, open glyphs, and shared tools.
+          </p>
+          <ul>
+            <li><a href="mission.html">Read the Mission</a></li>
+            <li><a href="photon-story.html">Explore the Photon Story</a></li>
+          </ul>
+        </article>
+
+        <aside class="card">
+          <h2>Poster</h2>
+          <a class="poster" href="photon-story.html">
+            <img src="assets/images/photon-poster.webp" alt="The Photon Story poster">
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="wrap">© 2025 OQADAH • Coherence in Motion</footer>
+  </main>
+
+  <!-- Starfield script (backdrop only; non-blocking) -->
+  <script>
+    (function(){
+      const c = document.getElementById('stars');
+      if(!c) return;
+      const ctx = c.getContext('2d', { alpha: true });
+      let w, h, stars;
+
+      function resize(){
+        const r = window.devicePixelRatio || 1;
+        w = c.clientWidth; h = c.clientHeight;
+        c.width = Math.floor(w * r); c.height = Math.floor(h * r);
+        ctx.setTransform(r,0,0,r,0,0);
+        spawn();
+        draw();
+      }
+      function spawn(){
+        const N = Math.floor((w*h)/14000);
+        stars = new Array(N).fill(0).map(()=>({
+          x: Math.random()*w,
+          y: Math.random()*h,
+          z: Math.random()*0.8 + 0.2,
+          tw: Math.random()*Math.PI*2
+        }));
+      }
+      function draw(t=0){
+        ctx.clearRect(0,0,w,h);
+        for(const s of stars){
+          const size = s.z*1.2;
+          const flick = .65 + .35*Math.sin(t/1000 + s.tw);
+          ctx.globalAlpha = 0.45 * flick;
+          ctx.fillStyle = '#cfe3ff';
+          ctx.fillRect(s.x, s.y, size, size);
+          if (Math.random()<0.002){
+            ctx.globalAlpha = .18;
+            ctx.fillRect(s.x-20, s.y, 40, 1);
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+      new ResizeObserver(resize).observe(c);
+      window.addEventListener('orientationchange', resize);
+      // initial
+      setTimeout(resize, 0);
+    })();
+  </script>
+</body>
+</html>
